@@ -1,0 +1,15 @@
+{% extends "pops/base_detail.html" %}
+{% load staticfiles %}
+
+{% block slim_content%}
+		
+	<div class="pop-img">
+
+		<img src="{% static 'pops/hotspot/' %}p{{ object.panel.ordinal }}-{{ object.slug }}.jpg">
+		{{ object.caption|safe }}
+
+	</div> 
+
+	{{ object.narrative|safe }}
+    
+{% endblock slim_content %}

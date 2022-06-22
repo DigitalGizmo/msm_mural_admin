@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block title %}{{ object.panel_title }}{% endblock %}
+
+{% block full_page %}
+
+<main class="swipe-main">
+
+  <div class="wrapper">
+
+    <div class="home-nav">
+      <a href="/">&larr; Home Don wuz here.</a>
+    </div>
+
+    <div class="panel-title">     
+    {% block panel_title %}
+      <h1>{{ object.panel_title }}</h1>
+
+        <p>Child template will fill this in</p>
+
+    {% endblock panel_title %}
+    </div>
+
+    <div class="panel-nav"> 
+    {% for panel in object.panel_list %}
+      {% if panel.ordinal == object.ordinal %}
+        <img src="{% static 'images/mini-nav-selected.png' %}">
+      {% elif panel.ordinal < 50 %}
+        <a href="{% url 'panels:panel_detail' panel.slug %}">
+          <img src="{% static 'images/mini-nav.png' %}">
+        </a>
+      {% endif %}
+    {% endfor %}      
+    </div>
+
+    <div class="prev-panel">
+
+      {% if object.get_prev %}
+        <a class="prev" href="{% url 'panels:panel_detail' object.get_prev.slug %}">
+          <img src="{% static 'panels/panelpics/arrow-prev.png' %}">
+        </a>        
+      {% endif %}
+
+      <svg  xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
+        viewBox="0 0 217.2 1800"> <!-- 216 1790 -->
+
+        <image id="document" x="0" y="0" xlink:href="{% static 'panels/panelpics/' %}{{ object.slug }}-prev.jpg" width="217.2" height="1800" />
+
+      </svg>
+
+    </div>
+
+    <div class="main">
+
+  		<article>
+
+        {% block panel_content %}
+          panel content here
+        {% endblock panel_content %}
+
+  		</article>
+
+      <nav class="tabs">
+        <ul>
+          {% for nav_article in object.article_set.all %}
+            {% if article.article_type == nav_article.article_type %}
+              <li class="selected">{{ nav_article.title|safe }}</li>
+            {% else %}
+              <li><a 
+                href="{% url 'panels:article_detail' object.slug nav_article.article_type %}">
+                {{ nav_article.title|safe }}</a></li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+
+      </nav>
+
+  	</div><!--/main-->
+
+    <div class="next-panel">
+
+      {% if object.get_next and object.get_next.ordinal < 50 %}
+        <a class="next" href="{% url 'panels:panel_detail' object.get_next.slug %}">
+          <img src="{% static 'panels/panelpics/arrow-next.png' %}">
+        </a>        
+      {% endif %}
+
+      <svg  xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
+        viewBox="0 0 217.2 1800">
+
+        <image id="document" x="0" y="0" xlink:href="{% static 'panels/panelpics/' %}{{ object.slug }}-next.jpg" width="217.2" height="1800" />
+
+      </svg>
+    </div>
+
+  </div><!--/wrapper-->
+
+</main> <!-- swipe-main -->
+
+{% endblock full_page %}

@@ -1,0 +1,103 @@
+// pops
+
+// For popup windows
+.hidden {
+  display: none;
+}
+
+.unhidden {
+  display: block;
+}
+
+.slimpop-wrapper {
+  background-color: $pop-background-color;
+  border: $base-border;
+  color: $dark-gray;
+  overflow: auto;
+  padding: $base-spacing;
+  margin: auto;
+  
+  h1 {
+    color: $accent-color;
+  }
+  
+  h4.subhead {
+    color: $medium-gray;
+    margin-bottom: 0;
+  }
+
+  p {
+    font-size: 1.025em;
+  }
+}
+
+// for the close link
+.pop-close {
+  float: right;
+
+  a:link, a:visited {
+    color: $accent-color;
+  }
+}
+
+#slimpop-overlay {
+  background: url(../images/overlay.png) repeat;
+  cursor: pointer;
+  height: 100%;
+  left: 0;
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  z-index: 99;
+}
+
+// JavaScript assigns this (or .hidden) to slimpop-container
+// .slimpop-basic { -- changes made for swiping/sliding of slideshows
+#slimpop-container {
+  overflow-y: auto;
+  position: fixed; /* this positions the slimpop relative to viewport, it won't scroll with the page */
+  left: 80px;
+  top: 8%;
+  z-index: 100;
+  width: 85%;
+  max-height: 85%;
+}
+
+.pop-img {
+  border-top: 6px solid $light-gray;
+  border-bottom: 6px solid $light-gray;
+  margin-bottom: $small-spacing;
+  text-align: center;
+
+  img {
+    border: $base-border;
+    margin-top: $small-spacing;
+    max-height: 600px;
+  }
+
+  p {
+    color: $medium-gray;
+    font-size: $small-font-size !important;
+    text-align: left;
+  }
+}
+
+// for Voices popups
+blockquote {
+  background-color: $light-gray;
+  max-height: 250px;
+  overflow: auto;
+  padding: 0 $base-spacing;
+}
+
+cite {
+  font-style: normal;
+
+  &:before {
+    content: "– "
+  }
+}
+
+audio.voices {
+  width: 50%;
+}

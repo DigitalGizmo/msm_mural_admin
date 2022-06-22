@@ -1,0 +1,36 @@
+{% extends "panels/panel_base.html" %}
+{% load staticfiles %}
+
+{% block title %}{{ object.panel_title }}{% endblock %}
+
+{% block panel_title %}
+  <h1>{{ object.panel_title }}</h1>
+  {{ object.panel_blurb|safe }}
+  <!--<p class="more-link"><a href="{% url 'panels:article_detail' object.slug 'intro' %}">learn more...</a></p>-->
+{% endblock panel_title %}
+
+
+{% block panel_content %}
+
+<div class="panel-image">
+
+  <svg  xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
+    viewBox="0 0 800 1800">
+
+    <image id="document" x="0" y="0" xlink:href="{% static 'panels/panelpics/' %}{{ object.slug }}.jpg" width="800" height="1800" />
+
+    {% for hotspot in object.hotspot_set.all %}  
+      <a class="pop_item" href="{% url 'pops:hotspot_ajax_detail' hotspot.slug %}">
+        <circle class="hotspot" cx="{{ hotspot.x_position }}" 
+          cy="{{ hotspot.y_position }}" r="72"/>
+      </a>
+    {% endfor %}    
+  </svg>
+
+</div><!--/panel-image-->
+
+
+{% endblock panel_content %}
+
+

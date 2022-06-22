@@ -1,0 +1,124 @@
+// for tab nav of main panel content area (lozenge buttons)
+nav.tabs {
+	position: absolute;
+	bottom: 0px;
+}
+
+.tabs ul {
+	font-size: $small-font-size;
+	letter-spacing: 0.025em;
+	text-transform: uppercase;
+
+	li {
+		background-color: $accent-color;
+		border: 1px solid darken($accent-color, 15%);
+		border-radius: $round-border-radius;
+		display: inline-block;
+		font-weight: bold;
+		height: 60px;
+		letter-spacing: 0.05em;
+		line-height: $heading-line-height;
+		margin: 0px 5px 5px 5px;
+		padding: $small-spacing $base-spacing;
+		text-align: center;
+		vertical-align: top;
+		width: 260px;
+		
+		a:link, a:visited {
+			color: white;
+		}
+
+		a:hover {
+			color: $dark-gray;
+			text-decoration: underline;
+		}
+	}
+}
+
+.tabs ul li.selected {
+	background-color: $dark-gray;
+	color: white;			
+}
+
+// for Learn More picture-links
+
+.learn-more {
+	background-color: $light-gray;
+	margin-left:  -$base-spacing * 2;
+	margin-right:  -$base-spacing * 2;
+	height: 328px;
+	padding: $tiny-spacing $base-spacing * 2 $base-spacing * 3 $base-spacing * 2;
+
+	ul li {
+		display: inline-block;
+		font-size: $small-font-size;
+		line-height: $heading-line-height;
+		margin-right: $base-spacing;
+		vertical-align: top;
+		width: 29%;
+
+		&:last-child {
+		  margin-right: 0px;
+		}
+
+		img {
+			border: $darker-border;
+		}
+
+		span {
+			color: $medium-gray
+		}
+	}
+}
+
+// for Learn More slide shows
+
+.slide-nav {
+	text-align: right;
+
+	ul li {
+		display: inline;
+		
+		span.no-more {
+			color: darken($light-gray, 25%);
+		}
+
+		a:link, a:visited {
+			color: $dark-gray;
+		}
+		
+		a:hover {
+			color: $hover-color;
+			text-decoration: underline;
+		}
+	}
+}
+
+// for next, previous panel links
+
+.next-panel, .prev-panel {
+	position: relative;
+
+	a img {
+		position: absolute;
+		top: 45%;
+	}
+}
+
+.next-panel a img {
+	right: 2px;
+}
+
+// for visit link
+h3.visit-link {
+	color: $dark-gray;
+	font-size: $small-font-size;
+	font-weight: normal;
+	margin: $small-spacing 0;
+	text-align: center;
+
+	a {
+		color: $accent-color;
+		font-weight: bold;
+	}
+}

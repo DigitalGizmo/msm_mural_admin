@@ -1,0 +1,20 @@
+{% extends "admin/change_form.html" %}
+
+{% block after_related_objects %}
+	{{ block.super }}
+	<!-- Initialize the editor. -->
+	<script>
+		$(function() {
+			// set editor with options for textareas
+			$('#id_narrative').froalaEditor(froalaIntro);
+			$('#id_caption').froalaEditor(froalaBlurb);
+
+			// for inLine texts
+			$('.vLargeTextField').froalaEditor(froalaTranscript);
+
+			// get rid of float for labels
+			$('label[for="id_narrative"]').css('float', 'none');
+			$('label[for="id_caption"]').css('float', 'none');
+		});
+	</script>
+{% endblock after_related_objects %}

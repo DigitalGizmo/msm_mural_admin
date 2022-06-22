@@ -1,0 +1,77 @@
+// image treatments
+
+// for images in the main content area
+div.image {
+	text-align: center;
+	border-top: 6px solid $light-gray;
+	border-bottom: 6px solid $light-gray;
+	height: 470px;
+	margin-bottom: $small-spacing;
+	
+	img {
+		border: $base-border;
+		margin: $tiny-spacing 0;
+		max-height: 400px;
+	}
+
+	p {
+		margin-top: -$small-spacing;
+  		line-height: $heading-line-height;
+  	}
+}
+
+#slideshow-image {
+	max-width: 50vw;
+}
+
+// for panel hotspots
+.show-highlight-background, .show-highlight-foreground, .hide-highlight {
+	cursor: pointer;
+}
+
+.show-highlight-background {
+  fill: #f7c98b;
+  opacity: 0.7;
+}
+
+.show-highlight-foreground {
+  fill: #a0efed;
+  opacity: 0.68;
+}
+
+.hide-highlight {
+  fill: black; 
+  fill-opacity: 0;	
+}
+
+// for hotspots on home page mural panels
+.mural-panel-hotspot {
+	stroke: white;
+	stroke-width: 3;
+	cursor: pointer;
+	fill: black;
+	fill-opacity: 0;
+}
+
+// for hotspots on panel pages
+.hotspot  {
+	stroke: white;
+    stroke-width: 3;
+	fill: $accent-color;
+	fill-opacity: 0.25;
+	cursor: pointer;
+
+	&:hover {
+		fill: $hover-color;
+	}
+}
+
+#tiny-panels .hotspot {
+	stroke-width: 1;
+	fill: black;
+}
+
+#tiny-panels rect.selected {
+	fill: $accent-color;
+	fill-opacity: 1;
+}

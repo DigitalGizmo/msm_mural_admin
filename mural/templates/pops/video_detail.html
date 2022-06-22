@@ -1,0 +1,20 @@
+{% extends "pops/base_detail.html" %}
+{% load staticfiles %}
+
+{% block slim_content%}
+		
+	<div id="video-content">
+
+		<video  width="720" height="405" controls="controls" poster="{% static 'pops/learnmore/media/' %}p{{ object.article.panel.ordinal }}-{{ object.article.article_type }}-{{ object.learnmore_type }}.jpg">
+			<source src="{% static 'pops/learnmore/media/' %}p{{ object.article.panel.ordinal }}-{{ object.article.article_type }}-{{ object.learnmore_type }}.webm" type="video/webm">
+			<source src="{% static 'pops/learnmore/media/' %}p{{ object.article.panel.ordinal }}-{{ object.article.article_type }}-{{ object.learnmore_type }}.mp4" type="video/mp4">
+			Your browser does not support the video tag.
+		</video>
+
+		{{ object.caption|safe }}
+
+	</div> 
+
+	{{ object.narrative|safe }}
+    
+{% endblock slim_content %}
