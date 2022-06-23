@@ -35,7 +35,7 @@ ALLOWED_HOSTS = ['msm-mural.digitalgizmo.com', '127.0.0.1']
 INSTALLED_APPS = [
     'panels.apps.PanelsConfig',
     'pops.apps.PopsConfig',
-    'django_distill',
+    # 'django_distill',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -137,4 +137,4 @@ STATICFILES_DIRS = (
     BASE_DIR.child("local_static"),
 )
 
-
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
