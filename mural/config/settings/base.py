@@ -14,9 +14,12 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 # BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-from unipath import Path
-BASE_DIR = Path(__file__).ancestor(3)
+from pathlib import Path
 
+# BASE_DIR = Path(__file__).ancestor(3)
+# Build paths inside the project like this: BASE_DIR / 'subdir'.
+# in this case from msm_mural_admin/murla/config/settings/base.py yields msm_mural_admin
+BASE_DIR = Path(__file__).resolve().parent.parent.parent.parent
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
@@ -31,7 +34,6 @@ ALLOWED_HOSTS = ['msm-mural.digitalgizmo.com', '127.0.0.1']
 
 
 # Application definition
-
 INSTALLED_APPS = [
     'panels.apps.PanelsConfig',
     'pops.apps.PopsConfig',
@@ -59,7 +61,7 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR.child("templates")],
+        'DIRS': [BASE_DIR / 'mural' /'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -80,8 +82,6 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 DATABASES = {
     'default': {
-        # 'ENGINE': 'django.db.backends.sqlite3',
-        # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'msm_mural_db',
         'USER': 'msm_mural_user',
@@ -90,7 +90,6 @@ DATABASES = {
         'PORT': '5432',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
@@ -131,10 +130,11 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # Static files (CSS, JavaScript, Images)
-STATIC_ROOT = BASE_DIR.ancestor(2).child("msm_mural_static")
+STATIC_ROOT = BASE_DIR.parent / 'msm_mural_static'
 
-STATICFILES_DIRS = (
-    BASE_DIR.child("local_static"),
-)
+
+STATICFILES_DIRS = [
+    BASE_DIR / 'local_static'
+]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
