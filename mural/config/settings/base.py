@@ -10,7 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
-# import os
+import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 # BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -21,11 +21,25 @@ from pathlib import Path
 # in this case from msm_mural_admin/murla/config/settings/base.py yields msm_mural_admin
 BASE_DIR = Path(__file__).resolve().parent.parent.parent.parent
 
+# Normally you should not import ANYTHING from Django directly 
+# into your settings, but ImproperlyConfigured is an exception. 
+# For secret key retrieval
+from django.core.exceptions import ImproperlyConfigured
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '%-qkyq-id+=w)vd8p3+1#apulkq^@1h%vaq&lk1hsy(ww@h56h'
+def get_env_variable(var_name):
+    """Get the environment variable or return exception.""" 
+    try:
+        return os.environ[var_name] 
+    except KeyError:
+        error_msg = 'Set the {} environment 􏰁→ variable'.format(var_name)
+        raise ImproperlyConfigured(error_msg)
+
+
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = get_env_variable('MURAL_DJANGO_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -134,7 +148,7 @@ STATIC_ROOT = BASE_DIR.parent / 'msm_mural_static'
 
 
 STATICFILES_DIRS = [
-    BASE_DIR / 'local_static'
+    BASE_DIR / 'mural' / 'local_static'
 ]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
