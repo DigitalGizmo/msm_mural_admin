@@ -1,4 +1,5 @@
 from django.db import models
+from panels.models import Panel, Article
 
 class Learnmore(models.Model):
     """docstring for Learnmore"""
@@ -10,7 +11,9 @@ class Learnmore(models.Model):
         ('video','Video Story'),
         ('voices','Voices'),
     )
-    article = models.ForeignKey('panels.Article', on_delete=models.CASCADE)
+    #  related_name='learnmores',
+    article = models.ForeignKey(Article,
+        on_delete=models.PROTECT)
     learnmore_type = models.CharField(max_length=12, default='today', 
         choices=LEARMORE_TYPE)
     # slug = models.SlugField('short name', max_length=48, unique=True)
@@ -25,7 +28,9 @@ class Learnmore(models.Model):
         
 
 class Slide(models.Model):
-    learnmore = models.ForeignKey('pops.Learnmore', on_delete=models.CASCADE)
+    # related_name='slides',
+    learnmore = models.ForeignKey(Learnmore, 
+        on_delete=models.PROTECT)
     slide_num = models.IntegerField()
     title = models.CharField(max_length=48, blank=True, default='')
     alt_tag = models.CharField('Image description', max_length=48, blank=True, default='')
@@ -59,7 +64,9 @@ class Slide(models.Model):
 
 
 class Voice(models.Model):
-    learnmore = models.ForeignKey('pops.Learnmore', on_delete=models.CASCADE)
+    # related_name='voices',
+    learnmore = models.ForeignKey(Learnmore, 
+        on_delete=models.PROTECT)
     part_num = models.IntegerField('Audio number')
     title = models.CharField(max_length=64, blank=True, default='')
     narrative = models.TextField('Transcription', blank=True, default='')
@@ -76,7 +83,9 @@ class Visit(models.Model):
     Visit is different from Learnmore because it is a child of Panel, not
     of Article
     """
-    panel = models.ForeignKey('panels.Panel', on_delete=models.CASCADE)
+    # related_name='visits',
+    panel = models.ForeignKey(Panel, 
+        on_delete=models.PROTECT)
     title = models.CharField(max_length=48)
     alt_tag = models.CharField('Image description', max_length=48, blank=True, default='')
     caption = models.TextField(blank=True, default='')
@@ -89,7 +98,9 @@ class Visit(models.Model):
 
 class Hotspot(models.Model):
     """docstring for Visit"""
-    panel = models.ForeignKey('panels.Panel', on_delete=models.CASCADE)
+    # related_name='hotspots',
+    panel = models.ForeignKey(Panel, 
+        on_delete=models.PROTECT)
     slug = models.SlugField('short name', max_length=48, unique=True)
     title = models.CharField(max_length=48)
     alt_tag = models.CharField('Image description', max_length=48, blank=True, default='')

@@ -15,12 +15,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
-from django.views.generic import TemplateView
+from graphene_django.views import GraphQLView
+from django.views.decorators.csrf import csrf_exempt
+from .schema import schema
+# from django.views.generic import TemplateView
 from panels import views
 
 
 urlpatterns = [
     # path('', TemplateView.as_view(template_name="index.html")),
+    path('graphql/', 
+       csrf_exempt(GraphQLView.as_view(graphiql=True)), 
+       name='graphql'),
     path('', views.PanelListView.as_view(), name='index.html'),
     path('attract/', views.AttractListView.as_view(), name='attract.html'),
     path('panels/', include('panels.urls', namespace='panels')),

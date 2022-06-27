@@ -50,7 +50,9 @@ class Article(models.Model):
         ('fore','Foreground'),
         ('back','Background'),
     )
-    panel = models.ForeignKey('panels.Panel', on_delete=models.CASCADE)
+    # related_name='ql_articles',
+    panel = models.ForeignKey('panels.Panel', 
+         on_delete=models.PROTECT)
     article_type = models.CharField(max_length=12, default='intro', 
         choices=ARTICLE_TYPE)
     title = models.CharField(max_length=48, default='Title goes here')

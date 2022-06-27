@@ -1,0 +1,4 @@
+Django
+psycopg2
+graphene-django
+django-filter

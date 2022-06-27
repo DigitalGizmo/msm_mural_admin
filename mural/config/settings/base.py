@@ -51,7 +51,7 @@ ALLOWED_HOSTS = ['msm-mural.digitalgizmo.com', '127.0.0.1']
 INSTALLED_APPS = [
     'panels.apps.PanelsConfig',
     'pops.apps.PopsConfig',
-    # 'django_distill',
+    'graphene_django',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -152,3 +152,7 @@ STATICFILES_DIRS = [
 ]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+GRAPHENE = {
+    "SCHEMA": "config.schema.schema"
+}
