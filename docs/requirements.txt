@@ -2,3 +2,4 @@ Django
 psycopg2
 graphene-django
 django-filter
+django-cors-headers==3.13.0
