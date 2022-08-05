@@ -44,7 +44,8 @@ SECRET_KEY = get_env_variable('MURAL_DJANGO_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['mural-admin.digitalgizmo.com', '127.0.0.1', 'localhost']
+# ALLOWED_HOSTS = ['mural-admin.digitalgizmo.com', '127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['104.248.235.164', '127.0.0.1', 'localhost']
 CORS_ORIGIN_ALLOW_ALL = True
 
 # Application definition
