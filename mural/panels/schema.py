@@ -2,9 +2,8 @@ from statistics import mode
 from graphene import relay, ObjectType, Field, String
 from graphene_django import DjangoObjectType
 from graphene_django.filter import DjangoFilterConnectionField
-from pops.models import Visit
-
 from .models import Panel, Article
+from pops.models import Hotspot, Visit, Learnmore #, Slide, Voice
 
 class PanelNode(DjangoObjectType):
   class Meta:
@@ -18,11 +17,35 @@ class ArticleNode(DjangoObjectType):
     filter_fields = ['panel_id', 'title']
     interfaces = (relay.Node, )
 
+class HotspotNode(DjangoObjectType):
+  class Meta:
+    model = Hotspot
+    filter_fields = ['panel_id']
+    interfaces = (relay.Node, )
+
 class VisitNode(DjangoObjectType):
   class Meta:
     model = Visit
     filter_fields = ['panel_id']
     interfaces = (relay.Node, )
+
+class LearnmoreNode(DjangoObjectType):
+  class Meta:
+    model = Learnmore
+    filter_fields = ['article_id']
+    interfaces = (relay.Node, )
+
+# class SlideNode(DjangoObjectType):
+#   class Meta:
+#     model = Slide
+#     filter_fields = ['learnmore_id']
+#     interfaces = (relay.Node, )
+
+# class VoiceNode(DjangoObjectType):
+#   class Meta:
+#     model = Voice
+#     filter_fields = ['article_id']
+#     interfaces = (relay.Node, )
 
 class PanelType(DjangoObjectType):
     class Meta:
