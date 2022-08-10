@@ -12,6 +12,7 @@ class PanelNode(DjangoObjectType):
     interfaces = (relay.Node, )
 
 class ArticleNode(DjangoObjectType):
+  article_type = String() # Prevents output Uppercase
   class Meta:
     model = Article
     filter_fields = ['panel_id', 'title']
@@ -30,9 +31,10 @@ class VisitNode(DjangoObjectType):
     interfaces = (relay.Node, )
 
 class LearnmoreNode(DjangoObjectType):
+  learnmore_type = String() # Prevents output Uppercase
   class Meta:
     model = Learnmore
-    filter_fields = ['article_id']
+    filter_fields = ['article_id', 'learnmore_type']
     interfaces = (relay.Node, )
 
 # class SlideNode(DjangoObjectType):
