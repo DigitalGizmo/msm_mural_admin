@@ -3,7 +3,7 @@ from graphene import relay, ObjectType, Field, String
 from graphene_django import DjangoObjectType
 from graphene_django.filter import DjangoFilterConnectionField
 from .models import Panel, Article
-from pops.models import Hotspot, Visit, Learnmore #, Slide, Voice
+from pops.models import Hotspot, Visit, Learnmore, Slide #, Voice
 
 class PanelNode(DjangoObjectType):
   class Meta:
@@ -37,11 +37,11 @@ class LearnmoreNode(DjangoObjectType):
     filter_fields = ['article_id', 'learnmore_type']
     interfaces = (relay.Node, )
 
-# class SlideNode(DjangoObjectType):
-#   class Meta:
-#     model = Slide
-#     filter_fields = ['learnmore_id']
-#     interfaces = (relay.Node, )
+class SlideNode(DjangoObjectType):
+  class Meta:
+    model = Slide
+    filter_fields = ['learnmore_id']
+    interfaces = (relay.Node, )
 
 # class VoiceNode(DjangoObjectType):
 #   class Meta:
